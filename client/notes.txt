@@ -1,0 +1,2 @@
+autocomplete in HTML files to make it global
+make the age input with a slide bar
