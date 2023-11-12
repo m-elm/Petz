@@ -8,7 +8,7 @@ import { Message } from '../_models/message';
   providedIn: 'root',
 })
 export class MessageService {
-  baserUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class MessageService {
 
     params = params.append('Container', container);
     return getPaginatedResult<Message[]>(
-      this.baserUrl + 'messages',
+      this.baseUrl + 'messages',
       params,
       this.http
     );
@@ -25,7 +25,11 @@ export class MessageService {
 
   getMessageThread(username: string) {
     return this.http.get<Message[]>(
-      this.baserUrl + 'messages/thread/' + username
+      this.baseUrl + 'messages/thread/' + username
     );
+  }
+
+  sendMessage(username: string, content: string) {
+    return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content});
   }
 }
