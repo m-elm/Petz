@@ -28,6 +28,8 @@ public class UsersController : BaseApiController
     _photoService = photoService;
   }
 
+
+  //[Authorize(Roles = "Admin")]
   [HttpGet] // api/users
   public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
   {
@@ -46,6 +48,7 @@ public class UsersController : BaseApiController
     return Ok(users);
   }
 
+  //[Authorize(Roles = "Member")]
   [HttpGet("{username}")] // api/users/2
   public async Task<ActionResult<MemberDto>> GetUser(string username)
   {
