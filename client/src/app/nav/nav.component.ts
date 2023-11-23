@@ -32,4 +32,10 @@ export class NavComponent implements OnInit {
     this.accountService.logout();
     this.router.navigateByUrl('/');
   }
+
+  MessagesActivated(tabName: string){
+    if(tabName === 'Messages' && this.accountService.currentUser$){
+
+    }
+  }
 }

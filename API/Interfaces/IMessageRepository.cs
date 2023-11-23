@@ -23,8 +23,7 @@ namespace API.Interfaces
 
         Task<Group> GetGroupFromConnection(string connectionId);
 
-
-
+        Task<IEnumerable<ConversationDto>> GetConversations(string currentUsername);
     }
 
 }

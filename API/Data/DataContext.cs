@@ -58,6 +58,5 @@ IdentityRoleClaim<int>, IdentityUserToken<int>>
       .HasOne(u => u.Recipient)
       .WithMany(l => l.MessagesReceived)
       .OnDelete(DeleteBehavior.Restrict);
-
   }
 }

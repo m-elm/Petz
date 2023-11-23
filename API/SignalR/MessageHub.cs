@@ -1,4 +1,3 @@
-using System.Security.AccessControl;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
@@ -38,9 +37,14 @@ namespace API.SignalR
       var messages = await _uow.MessageRepository
           .GetMessageThread(Context.User.GetUsername(), otherUser);
 
+      var conversations = await _uow.MessageRepository
+        .GetConversations(Context.User.GetUsername());
+
       if(_uow.HasChanges()) await _uow.Complete();
 
       await Clients.Caller.SendAsync("ReceiveMessageThread", messages);
+      await Clients.Caller.SendAsync("ReceiveConversations", conversations);
+
     }
 
     public override async Task OnDisconnectedAsync(Exception exception)

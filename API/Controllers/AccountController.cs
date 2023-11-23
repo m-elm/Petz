@@ -43,9 +43,6 @@ namespace API.Controllers
 
       if(!roleResult.Succeeded) return BadRequest(roleResult.Errors);
 
-
-
-
       return new UserDto
       {
         Username = user.UserName,

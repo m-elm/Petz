@@ -93,16 +93,16 @@ namespace API.Data
         .OrderBy(m => m.MessageSent)
         .AsQueryable();
 
-        var unreadMessages = query.Where(m => m.DateRead == null
-        && m.RecipientUsername == currentUserName).ToList();
+      var unreadMessages = query.Where(m => m.DateRead == null
+      && m.RecipientUsername == currentUserName).ToList();
 
-        if(unreadMessages.Any())
+      if (unreadMessages.Any())
+      {
+        foreach (var message in unreadMessages)
         {
-          foreach (var message in unreadMessages)
-          {
-            message.DateRead = DateTime.UtcNow;
-          }
+          message.DateRead = DateTime.UtcNow;
         }
+      }
 
       return await query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider).ToListAsync();
     }
@@ -110,6 +110,27 @@ namespace API.Data
     public void RemoveConnection(Connection connection)
     {
       _context.Connections.Remove(connection);
+    }
+
+    public async Task<IEnumerable<ConversationDto>> GetConversations(string currentUsername)
+    {
+      var messages = await _context.Messages
+        .Include(m => m.Sender).ThenInclude(u => u.Photos)
+        .Include(m => m.Recipient).ThenInclude(u => u.Photos)
+        .Where(m => (m.SenderUsername == currentUsername && !m.SenderDeleted) || (m.RecipientUsername == currentUsername && !m.RecipientDeleted))
+        .ToListAsync();
+
+    var userDto = _mapper.Map<UserDto>(_context.Users.SingleOrDefault(u => u.UserName == currentUsername));
+
+    var conversations = messages
+        .Select(m => _mapper.Map<ConversationDto>((m, userDto)))
+        .GroupBy(c => c.ContactUsername)
+        .Select(g => g.OrderByDescending(c => c.LastSent).First())
+        .ToList();
+
+    return conversations;
+
+
     }
 
   }

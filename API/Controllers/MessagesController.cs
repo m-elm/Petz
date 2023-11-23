@@ -51,7 +51,6 @@ namespace API.Controllers
     }
 
     [HttpGet]
-
     public async Task<ActionResult<PagedList<MessageDto>>> GetMessagesForUser([FromQuery]
         MessageParams messagesParams)
     {
@@ -64,6 +63,16 @@ namespace API.Controllers
       return messages;
 
     }
+
+/*
+    [HttpGet("thread/{username}")]
+    public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(string username)
+    {
+      var currentUsername = User.GetUsername();
+
+      return Ok(await _uow.MessageRepository.GetMessageThread(currentUsername, username));
+    }
+*/
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteMessage(int id)
@@ -85,6 +94,14 @@ namespace API.Controllers
       if(await _uow.Complete()) return Ok();
 
       return BadRequest("Problem deleting message");
+    }
+
+    [HttpGet("conversations")]
+    public async Task<ActionResult<IEnumerable<ConversationDto>>> GetConversations()
+    {
+      var conversations = await _uow.MessageRepository.GetConversations(User.GetUsername());
+
+      return Ok(conversations);
     }
 
   }
