@@ -46,6 +46,7 @@ export class AccountService {
     user.roles = [];
     const roles = this.getDecodedToken(user.token).role;
     Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    user.photoUrl = user.photoUrl ?? 'assets/user.png';
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
     this.presenceService.createHubConnection(user);

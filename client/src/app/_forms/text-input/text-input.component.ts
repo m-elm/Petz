@@ -1,5 +1,21 @@
 import { Component, Input, Self } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+
+function passwordValidator(control: AbstractControl) {
+  const password = control.value;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+  const isValid = hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
+
+  if (!isValid) {
+    return { invalidPassword: true };
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-text-input',

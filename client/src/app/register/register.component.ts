@@ -12,6 +12,22 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
+function passwordValidator(control: AbstractControl) {
+  const password = control.value;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+  const isValid = hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
+
+  if (!isValid) {
+    return { invalidPassword: true };
+  }
+
+  return null;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -45,7 +61,7 @@ export class RegisterComponent implements OnInit {
       country: ['', Validators.required],
       password: [
         '',
-        [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
+        [Validators.required, Validators.minLength(8), Validators.maxLength(50), passwordValidator],
       ],
       confirmPassword: [
         '',

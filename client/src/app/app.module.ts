@@ -33,6 +33,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './_services/customRouteReuseStrategy';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     PhotoManagementComponent,
     RolesModalComponent,
     ConfirmDialogComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

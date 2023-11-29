@@ -1,6 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
-using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
@@ -8,7 +5,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
 namespace API.Controllers
 {
@@ -32,6 +28,7 @@ namespace API.Controllers
       if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
       var user = _mapper.Map<AppUser>(registerDto);
+
 
       user.UserName = registerDto.Username.ToLower();
 

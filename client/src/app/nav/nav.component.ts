@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../_models/user';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -10,12 +12,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  routerLink: string = '/';
 
 
   constructor(public accountService: AccountService, private router: Router,
     private toastr: ToastrService) {}
 
   ngOnInit(): void {
+
+    this.accountService.currentUser$.subscribe({
+      next: user => {
+        this.routerLink = user ? '/members' : '/';
+      }
+    });
+
   }
 
 

@@ -36,4 +36,11 @@
   >
     Password do not match
   </div>
+
+  <div
+    class="invalid-feedback"
+    *ngIf="control.errors?.['invalidPassword']"
+  >
+  Password requirements: 1 uppercase, 1 lowercase, 1 number, 1 special character.
+  </div>
 </div>
