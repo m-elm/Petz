@@ -1,6 +1,9 @@
-# Dating Application - Full-Stack Web Development
+# Petz - Full-Stack Web Development
 
-Petz dating app is a web application that I decided to develop to put in practice my programming skills, especially those I learnt for ASP.NET Core, Entity Framework Core and Angular. The Front doesn't look like a final product but it was a great opportunity for me to practice Angular.
+Petz is a dating app, a web application that I've developed to put my programming skills into practice, focusing on ASP.NET Core, Entity Framework Core, and Angular. While the frontend may not resemble a final product, it served as an excellent opportunity for me to hone my skills in Angular.
+
+
+![Petz Matches](./Images/Matches.png)
 
 ## Table of Contents
 
