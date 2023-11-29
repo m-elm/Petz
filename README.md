@@ -4,6 +4,9 @@ Petz is a dating app, a web application that I've developed to put my programmin
 
 
 ![Petz Matches](./Images/Matches.png)
+![Petz Messages](./Images/Messages.png)
+
+
 
 ## Table of Contents
 
