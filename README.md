@@ -44,20 +44,20 @@ Ensure you have the following tools installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/dating-application.git
+    git clone https://github.com/m-elm/Petz.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd dating-application
+    cd Petz
     ```
 
 3. Install dependencies:
 
     ```bash
     dotnet restore
-    cd ClientApp
+    cd client
     npm install
     ```
 
@@ -78,7 +78,7 @@ Ensure you have the following tools installed:
 3. Navigate to the Angular app directory and run the development server:
 
     ```bash
-    cd ClientApp
+    cd client
     ng serve
     ```
 
