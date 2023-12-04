@@ -26,8 +26,7 @@ The Dating Application is a feature-rich web application that covers essential a
 
 - **User Authentication:** Secure user authentication using JWT authentication tokens
 - **Photo Upload:** Drag and drop photo upload functionality with an appealing gallery
-- **Messaging System:** Private messaging system for seamless communication between users
-- **Data Manipulation:** Implement filtering, sorting, and paging of data
+- **Data Manipulation:** Data is managed using Entity Framework using filtering, sorting, and paging
 - **Real-Time Communication:** Utilize SignalR for real-time presence and live messaging
 
 ## Getting Started
